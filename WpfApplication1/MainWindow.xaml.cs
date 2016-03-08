@@ -1,4 +1,8 @@
-﻿using System;
+﻿//  Project:    Inside Elevator GUI
+//  Authors:    Christopher Fernandez / Dustin Ellsworth
+//  Date:       3/7/2016
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,10 +33,10 @@ namespace WpfApplication1
         /// when a floor is reached deactivate the button on the
         /// gui for that floor
         /// </summary>
-        /// <param name="theFloorReaced"></param>
-        public void floorReached(RadioButton theFloorReaced)
+        /// <param name="theFloorReached"></param>
+        public void floorReached(RadioButton theFloorReached)
         {
-            theFloorReaced.IsChecked = false;
+            theFloorReached.IsChecked = false;
         }
 
         /// <summary>
@@ -94,10 +98,13 @@ namespace WpfApplication1
         /// calls another class to add the selected floor the list of selected floors
         /// </summary>
         /// <param name="floorToAdd"></param>
-        private void addFloorToQue( int floorToAdd )
+        private async void addFloorToQue(int floorToAdd)
         {
             // notify Controller or worldView class to add floor to que
-
+            // ** FOR SIMULATION ONLY **
+            await Task.Delay(3000);
+            runIt(floorToAdd);
+            // ** FOR SIMULATION ONLY **
         }
 
         /// <summary>
@@ -148,7 +155,54 @@ namespace WpfApplication1
             onFloor5.Background = Brushes.LightGray;
             // set the button for the floor passed in to grey
             currentFloor.Background = Brushes.CornflowerBlue;
-        }
 
+            // ** FOR SIMULATION ONLY **
+            if (currentFloor == onFloor1)
+            {
+                floorReached(rb1);
+            }
+            else if (currentFloor == onFloor2)
+            {
+                floorReached(rb2);
+            }
+            else if (currentFloor == onFloor3)
+            {
+                floorReached(rb3);
+            }
+            else if (currentFloor == onFloor4)
+            {
+                floorReached(rb4);
+            }
+            else if (currentFloor == onFloor5)
+            {
+                floorReached(rb5);
+            }
+            // ** FOR SIMULATION ONLY **
+        }
+        // ** FOR SIMULATION ONLY **
+        public void runIt(int num)
+        {
+            if (num == 1)
+            {
+                getCurrentFloor(onFloor1);
+            }
+            else if (num == 2)
+            {
+                getCurrentFloor(onFloor2);
+            }
+            else if (num == 3)
+            {
+                getCurrentFloor(onFloor3);
+            }
+            else if (num == 4)
+            {
+                getCurrentFloor(onFloor4);
+            }
+            else if (num == 5)
+            {
+                getCurrentFloor(onFloor5);
+            }
+        }
+        // ** FOR SIMULATION ONLY **
     }
 }
